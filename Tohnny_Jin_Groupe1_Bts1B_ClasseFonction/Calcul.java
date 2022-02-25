@@ -1,36 +1,37 @@
 class Fraction {
 
-    //Création de la classe Fraction
+    // Création de la classe Fraction
     public Fraction(int numerateur, int denominateur) {
         this.numerateur = numerateur;
         this.denominateur = denominateur;
     }
 
-    //La méthode get_Numerateur()
+    // La méthode get_Numerateur()
     public int get_Numerateur() {
         return this.numerateur;
     }
 
-    //La méthode get_Denominateur()
+    // La méthode get_Denominateur()
     public int get_Denominateur() {
         return this.denominateur;
     }
 
-    //La méthode get_PGCD
+    // La méthode get_PGCD
     public int get_PGCD() {
-        while (this.denominateur != 0) {
-            if (this.numerateur < this.denominateur) {
-                remplacer = this.numerateur;
-                this.numerateur = this.denominateur;
-                this.denominateur = remplacer;
+        int a = this.numerateur;
+        int b = this.denominateur;
+        while (b != 0) {
+            if (a < b) {
+                remplacer = a;
+                a = b;
+                b = remplacer;
             }
-            this.numerateur = this.numerateur - this.denominateur;
+            a = a - b;
         }
-        remplacer = this.numerateur;
-        return remplacer;
+        return a;
     }
 
-    //La méthode Affichage()
+    // La méthode Affichage()
     public String Affichage() {
         return ("La fraction est " + this.numerateur + "/" + this.denominateur + "." +
                 "\nLe numérateur est " + this.numerateur + ", le dénominateur est " + this.denominateur
@@ -38,16 +39,47 @@ class Fraction {
     }
 
 
+    //La méthode Simplification
+    public void Simplification() {
+        int a = this.get_PGCD();
+        this.numerateur = this.numerateur / a;
+        this.denominateur = this.denominateur / a;
+        System.out.println("La simplification de notre fraction est "+this.numerateur+"/"+this.denominateur);
+    }
+
+
+    // La méthode Multiplication
+    public Fraction Multiplication(Fraction frac){
+        this.numerateur = this.numerateur * frac.numerateur;
+        this.denominateur = this.denominateur * frac.denominateur;
+        return this;
+    }
+
+
+    // La méthode Addition
+    public Fraction Addition(Fraction frac){
+        int a = frac.denominateur;
+        frac.numerateur = frac.numerateur * this.denominateur;
+        frac.denominateur = frac.denominateur * this.denominateur;
+        this.numerateur = this.numerateur * a;
+        this.denominateur = this.denominateur * a;
+        this.numerateur = this.numerateur + frac.numerateur;
+        return this;
+    }
+
+
+    
+
     public static void main(String args[]) {
         Fraction Frac1 = new Fraction(2, 7);
-        Fraction Frac2 = new Fraction(5, 13);
+        Fraction Frac2 = new Fraction(7, 1);
         System.out.println("\nLes fractions  : ");
-
+        Frac1.Addition(Frac2);
         System.out.println("Fraction N1 : " + Frac1.Affichage());
-        System.out.println(Frac1.get_Denominateur());
+   
         /*
-        System.out.println("Fraction N2 : " + Frac2.Affichage());
-        */
+         * System.out.println("Fraction N2 : " + Frac2.Affichage());
+         */
 
     }
 
