@@ -58,28 +58,41 @@ class Fraction {
 
     // La méthode Addition
     public Fraction Addition(Fraction frac){
-        int a = frac.denominateur;
         frac.numerateur = frac.numerateur * this.denominateur;
-        frac.denominateur = frac.denominateur * this.denominateur;
-        this.numerateur = this.numerateur * a;
-        this.denominateur = this.denominateur * a;
+        this.numerateur = this.numerateur * frac.denominateur;
+        this.denominateur = this.denominateur * frac.denominateur;
         this.numerateur = this.numerateur + frac.numerateur;
         return this;
     }
 
 
-    
+    //La méthode Division
+    public Fraction Division(Fraction frac){
+        this.numerateur = this.numerateur * frac.denominateur;
+        this.denominateur = this.denominateur * frac.numerateur;
+        return this;
+    }
+
+
+    //La méthode set_Numerateur
+    public void set_Numerateur(int numerateur){
+        this.numerateur = numerateur;
+    }
+
+
+    //La méthode set_Denominateur
+    public void set_Denominateur(int denominateur){
+        this.denominateur = denominateur;
+    }
 
     public static void main(String args[]) {
         Fraction Frac1 = new Fraction(2, 7);
-        Fraction Frac2 = new Fraction(7, 1);
+        Fraction Frac2 = new Fraction(5, 13);
         System.out.println("\nLes fractions  : ");
-        Frac1.Addition(Frac2);
+
         System.out.println("Fraction N1 : " + Frac1.Affichage());
-   
-        /*
-         * System.out.println("Fraction N2 : " + Frac2.Affichage());
-         */
+        System.out.println("Fraction N2 : " + Frac2.Affichage());
+         
 
     }
 
