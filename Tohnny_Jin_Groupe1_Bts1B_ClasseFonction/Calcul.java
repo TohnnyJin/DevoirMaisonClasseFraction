@@ -58,9 +58,11 @@ class Fraction {
 
     // La méthode Addition()
     public Fraction Addition(Fraction frac){
-        frac.numerateur = frac.numerateur * this.denominateur;
-        this.numerateur = this.numerateur * frac.denominateur;
-        this.denominateur = this.denominateur * frac.denominateur;
+        int a = this.denominateur;
+        int b = frac.denominateur;
+        frac.numerateur = frac.numerateur * a;
+        this.numerateur = this.numerateur * b;
+        this.denominateur = this.denominateur * b;
         this.numerateur = this.numerateur + frac.numerateur;
         return this;
     }
@@ -88,12 +90,34 @@ class Fraction {
     public static void main(String args[]) {
         Fraction Frac1 = new Fraction(2, 7);
         Fraction Frac2 = new Fraction(5, 13);
+        Fraction Frac3 = new Fraction(7, 14);
+        Fraction Frac4 = new Fraction(1, 2);
+        Fraction Frac5 = new Fraction(6, 1);
         System.out.println("\nLes fractions  : ");
 
+        //Utilisation des méthodes Affichage
         System.out.println("Fraction N1 : " + Frac1.Affichage());
         System.out.println("Fraction N2 : " + Frac2.Affichage());
-         
+        System.out.println("Fraction N3 : " + Frac3.Affichage());
+        
+        //Utilsation de la méthode Addition et Simplification
+        Frac3.Addition(Frac1);
+        System.out.println("Fraction N3 + N1: " + Frac3.Affichage());
+        Frac3.Simplification();
+        System.out.println("Simplification de N3" + Frac3.Affichage());
 
+        //Utilisation de la méthode Division et Multiplication
+        Frac5.Division(Frac4);
+        System.out.println("Fraction N5/N4 " + Frac5.Affichage());
+        Frac5.Multiplication(Frac4);
+        System.out.println("Fraction N5*N4 " + Frac5.Affichage());
+
+        //Utilisation des méthodes get
+        Frac5.set_Numerateur(25);
+        Frac5.set_Denominateur(5);
+        System.out.println("Numerateur de N5 :" + Frac5.get_Numerateur());
+        System.out.println("Denominateur de N5 :" + Frac5.get_Denominateur());
+        System.out.println("PGCD de N5 :" + Frac5.get_PGCD());
     }
 
     int numerateur;
